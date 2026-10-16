@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOXINSIGHT — Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.tech-page {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 120px 48px 100px;
+}
+.tech-kicker, .tech-section-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.tech-kicker::before, .tech-section-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+.tech-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(42px, 4.5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  max-width: 780px;
+  margin-bottom: 20px;
+}
+.tech-title em { font-style: italic; color: var(--gold); }
+.tech-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted2);
+  max-width: 760px;
+  margin-bottom: 42px;
+  font-weight: 300;
+}
+.tech-grid, .stack-grid, .source-grid {
+  display: grid;
+  gap: 14px;
+}
+.tech-grid { grid-template-columns: repeat(3, 1fr); margin-bottom: 80px; }
+.stack-grid, .source-grid { grid-template-columns: repeat(2, 1fr); }
+.tech-card, .stack-card, .source-card {
+  background: var(--ink2);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  padding: 24px;
+}
+.tech-card-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 10px;
+}
+.tech-card-title, .stack-name {
+  font-family: 'Instrument Serif', serif;
+  color: var(--cream);
+}
+.tech-card-title { font-size: 20px; margin-bottom: 10px; }
+.stack-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:14px; }
+.stack-name { font-size: 26px; }
+.stack-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+.tech-card-text, .stack-desc {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--muted2);
+}
+.stack-desc { margin-bottom: 16px; }
+.stack-list, .source-list { display:flex; flex-wrap:wrap; gap:8px; }
+.stack-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted2);
+}
+.pipeline {
+  margin-top: 24px;
+  background: var(--ink2);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 26px;
+}
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+.pipe-step {
+  background: var(--ink3);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 16px 14px;
+  min-height: 120px;
+}
+.pipe-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); margin-bottom: 10px; }
+.pipe-title { font-size: 14px; font-weight: 500; color: var(--cream); margin-bottom: 8px; }
+.pipe-text { font-size: 12px; line-height: 1.65; color: var(--muted2); }
+.source-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 8px;
+  width: 100%;
+}
+.source-item:last-child { border-bottom: none; padding-bottom: 0; }
+.source-key { color: var(--muted2); font-size: 13px; }
+.source-val { color: var(--cream); font-size: 13px; text-align: right; }
+.tech-footer {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+@media (max-width: 1024px) {
+  .tech-grid, .stack-grid, .source-grid { grid-template-columns: 1fr; }
+  .pipeline-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .tech-page { padding: 104px 24px 80px; }
+  .pipeline-steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<nav>
+    <div class="logo">VOXINSIGHT<span>.</span></div>
+    <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./technology.html" class="active">Technology</a></li>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./app.html">Record</a></li>
+    </ul>
+    <a class="nav-cta" href="./app.html" style="text-decoration:none;">Start analyzing →</a>
+</nav>
+
+<main class="tech-page">
+    <div class="tech-kicker">Platform stack</div>
+    <h1 class="tech-title">The <em>models, datasets, and tools</em> behind VOXINSIGHT</h1>
+    <p class="tech-desc">This page documents the actual implementation used in VOXINSIGHT V2: the production CNN v2 classifier, the notebook SVM baseline used for benchmarking, the temporary wav2vec2 hook, the audio preprocessing chain, and the frontend and backend pieces that power uploads, recording, and analysis.</p>
+
+    <section>
+        <div class="tech-section-label">Model stack</div>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-card-label">Deployed model</div>
+                <div class="tech-card-title">EmotionCNNv2</div>
+                <div class="tech-card-text">This is the active production classifier in backend.py. It consumes 128-bin mel spectrograms and outputs six emotion classes: angry, disgust, fearful, happy, neutral, and sad.</div>
+            </div>
+          <div class="tech-card">
+            <div class="tech-card-label">Classical baseline</div>
+            <div class="tech-card-title">MFCC + SVM</div>
+            <div class="tech-card-text">Notebook experiments include an MFCC feature pipeline with an SVM baseline. This path is used for comparison and validation against deep-learning models, and its artifacts are stored under VOXINSIGHT_output/models.</div>
+          </div>
+            <div class="tech-card">
+                <div class="tech-card-label">Secondary model path</div>
+                <div class="tech-card-title">wav2vec2 hook</div>
+                <div class="tech-card-text">The backend also contains a temporary wav2vec2 sequence-classification path for future experimentation and comparison. It is loaded from the local VOXINSIGHT_output/models/wav2vec_best directory.</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-card-label">Training target</div>
+                <div class="tech-card-title">6-class emotion output</div>
+                <div class="tech-card-text">The deployed label set is standardized to six classes. Browser-facing copy may use friendlier names, but the model output is normalized to the backend label set.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section style="margin-top:80px;">
+        <div class="tech-section-label">Data and preprocessing</div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="tech-card-title">Dataset and source material</div>
+                <div class="tech-card-text">The project documentation references RAVDESS as the primary training source. Local workspace artifacts also include actor folders and cached feature outputs used during experimentation.</div>
+                <div class="source-list" style="margin-top:12px;">
+                    <div class="source-item"><span class="source-key">Training set</span><span class="source-val">RAVDESS</span></div>
+                    <div class="source-item"><span class="source-key">Local audio corpus</span><span class="source-val">audio_speech_actors_01-24</span></div>
+                    <div class="source-item"><span class="source-key">Feature cache</span><span class="source-val">VOXINSIGHT_output</span></div>
+                </div>
+            </div>
+            <div class="source-card">
+                <div class="tech-card-title">Audio preprocessing pipeline</div>
+                <div class="tech-card-text">Audio is decoded server-side, converted to mono, resampled to 16 kHz, trimmed for silence, normalized, and padded or clipped to a fixed duration before inference.</div>
+                <div class="source-list" style="margin-top:12px;">
+                    <div class="source-item"><span class="source-key">Decode</span><span class="source-val">soundfile, librosa</span></div>
+                    <div class="source-item"><span class="source-key">Sample rate</span><span class="source-val">16,000 Hz</span></div>
+                    <div class="source-item"><span class="source-key">Windowing</span><span class="source-val">Mel spectrogram features</span></div>
+                    <div class="source-item"><span class="source-key">Duration handling</span><span class="source-val">Trim, pad, clip</span></div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="pipeline">
+            <div class="tech-card-title">End-to-end inference flow</div>
+            <div class="pipeline-steps">
+                <div class="pipe-step"><div class="pipe-num">01</div><div class="pipe-title">Record or upload</div><div class="pipe-text">Users capture audio in the browser or upload a file from the landing page or recording page.</div></div>
+                <div class="pipe-step"><div class="pipe-num">02</div><div class="pipe-title">Transmit to API</div><div class="pipe-text">Frontend JavaScript posts the audio blob to the Flask API at /api/predict.</div></div>
+                <div class="pipe-step"><div class="pipe-num">03</div><div class="pipe-title">Preprocess audio</div><div class="pipe-text">The backend converts the waveform into the representation expected by the model.</div></div>
+                <div class="pipe-step"><div class="pipe-num">04</div><div class="pipe-title">Run inference</div><div class="pipe-text">PyTorch loads the CNN v2 weights and returns class probabilities.</div></div>
+                <div class="pipe-step"><div class="pipe-num">05</div><div class="pipe-title">Render results</div><div class="pipe-text">The UI shows the dominant emotion, confidence, feature values, and the analysis plot.</div></div>
+                <div class="pipe-step"><div class="pipe-num">06</div><div class="pipe-title">Save history</div><div class="pipe-text">Predictions are written to browser localStorage for a lightweight emotion history view.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section style="margin-top:80px;">
+        <div class="tech-section-label">Implementation stack</div>
+        <div class="stack-grid">
+            <div class="stack-card">
+                <div class="stack-head"><div class="stack-name">Backend</div><div class="stack-chip">Python / Flask</div></div>
+                <div class="stack-desc">The backend serves the app, handles CORS, decodes uploads, and exposes health and prediction endpoints. It loads the trained model directly from the local workspace.</div>
+                <div class="stack-list"><span class="stack-pill">Flask</span><span class="stack-pill">flask-cors</span><span class="stack-pill">PyTorch</span><span class="stack-pill">torchaudio</span><span class="stack-pill">librosa</span><span class="stack-pill">soundfile</span></div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-head"><div class="stack-name">Frontend</div><div class="stack-chip">HTML / CSS / JS</div></div>
+                <div class="stack-desc">The frontend is a static multi-page interface with an upload flow, microphone recording, live waveform feedback, and result cards. Charts are drawn with Chart.js.</div>
+                <div class="stack-list"><span class="stack-pill">Chart.js</span><span class="stack-pill">localStorage</span><span class="stack-pill">MediaRecorder API</span><span class="stack-pill">Web Audio API</span><span class="stack-pill">responsive UI</span></div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-head"><div class="stack-name">Training</div><div class="stack-chip">Model development</div></div>
+                <div class="stack-desc">The repo includes a notebook-based workflow for feature generation, dataset indexing, and model training. Output artifacts are stored under the VOXINSIGHT_output directory.</div>
+                <div class="stack-list"><span class="stack-pill">Jupyter notebook</span><span class="stack-pill">NumPy</span><span class="stack-pill">pandas</span><span class="stack-pill">scikit-learn</span><span class="stack-pill">matplotlib</span><span class="stack-pill">seaborn</span></div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-head"><div class="stack-name">Packaging</div><div class="stack-chip">Runtime support</div></div>
+                <div class="stack-desc">Supporting packages are pinned in requirements.txt for reproducible installs. The current stack is intentionally local-first and runs without external cloud dependencies.</div>
+                <div class="stack-list"><span class="stack-pill">torch</span><span class="stack-pill">datasets</span><span class="stack-pill">transformers</span><span class="stack-pill">joblib</span><span class="stack-pill">tqdm</span><span class="stack-pill">matplotlib</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section style="margin-top:80px;">
+        <div class="tech-section-label">Core files</div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="tech-card-title">Primary implementation files</div>
+                <div class="source-list" style="margin-top:12px;">
+                    <div class="source-item"><span class="source-key">backend.py</span><span class="source-val">Flask API + CNN v2 inference</span></div>
+                    <div class="source-item"><span class="source-key">frontend/script.js</span><span class="source-val">Upload, recording, charts, history</span></div>
+                    <div class="source-item"><span class="source-key">frontend/index.html</span><span class="source-val">Landing page</span></div>
+                    <div class="source-item"><span class="source-key">frontend/app.html</span><span class="source-val">Record-and-analyze page</span></div>
+                    <div class="source-item"><span class="source-key">frontend/research.html</span><span class="source-val">Benchmark and study notes</span></div>
+                </div>
+            </div>
+            <div class="source-card">
+                <div class="tech-card-title">Data and artifacts</div>
+                <div class="source-list" style="margin-top:12px;">
+                    <div class="source-item"><span class="source-key">VOXINSIGHT_output/models/cnn_best.pt</span><span class="source-val">Deployed weights</span></div>
+                    <div class="source-item"><span class="source-key">VOXINSIGHT_output/models/svm_best.pkl</span><span class="source-val">Classical baseline model</span></div>
+                    <div class="source-item"><span class="source-key">VOXINSIGHT_output/models/svm_scaler.pkl</span><span class="source-val">SVM feature scaler</span></div>
+                    <div class="source-item"><span class="source-key">VOXINSIGHT_output/models/wav2vec_best</span><span class="source-val">Future model path</span></div>
+                    <div class="source-item"><span class="source-key">VOXINSIGHT_output/features</span><span class="source-val">Generated features and splits</span></div>
+                    <div class="source-item"><span class="source-key">VOXINSIGHT_output/results</span><span class="source-val">History, plots, comparisons</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-footer">
+        <div class="footer-copy">VOXINSIGHT technology overview. Last updated for the current local stack.</div>
+      <div class="footer-links"><a href="./index.html">Home</a><a href="./research.html">Research</a><a href="./app.html">Record</a></div>
+    </div>
+</main>
+
+  <script src="page-transition.js"></script>
+
+</body>
+</html>
