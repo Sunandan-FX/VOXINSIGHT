@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOXINSIGHT — Emotion Audio Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">VOXINSIGHT<span>.</span></div>
+    <ul class="nav-links">
+        <li><a href="./technology.html">Technology</a></li>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./app.html">Record</a></li>
+    </ul>
+    <a class="nav-cta" href="./app.html" style="text-decoration:none;">Start free →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-left">
+        <!-- <div class="hero-badge"><div class="badge-dot"></div>Now in private beta</div> -->
+        <h1>Read the <em>feeling</em><br>inside every voice</h1>
+        <p class="hero-desc">VOXINSIGHT uses advanced acoustic AI to interpret emotion from speech in real time, with research-grade precision for product teams, therapists, and customer experience teams.</p>
+        <div class="hero-actions">
+            <button id="analyzeButton" class="btn-primary" onclick="document.getElementById('audioInput').click()">Analyze audio →</button>
+            <a href="./app.html" class="btn-ghost" style="text-decoration:none;">🎙 Record voice →</a>
+        </div>
+        <div class="hero-stats">
+            <div>
+                <span class="stat-val">6</span>
+                <span class="stat-lbl">Emotions detected</span>
+            </div>
+            <div>
+                <span class="stat-val">86.40%</span>
+                <span class="stat-lbl">Accuracy rate</span>
+            </div>
+            <div>
+                <span class="stat-val">&lt;120ms</span>
+                <span class="stat-lbl">Latency</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <!-- Floating accent cards -->
+        <div class="accent-card accent-card1">
+            <div class="acc-label">Pitch</div>
+            <div class="acc-val">324 Hz</div>
+            <div class="acc-sub">↑ 16% above baseline</div>
+        </div>
+        <div class="accent-card accent-card2">
+            <div class="acc-label">Confidence</div>
+            <div class="acc-val">94.8%</div>
+            <div class="acc-sub">Calm · Positive tone</div>
+        </div>
+
+        <!-- Main analyzer card -->
+        <div class="analyzer-card">
+            <div class="card-top">
+                <div class="card-tabs">
+                    <div class="card-tab active">Waveform</div>
+                    <div class="card-tab">Spectrum</div>
+                    <div class="card-tab">Breakdown</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Waveform -->
+                <div class="waveform-wrap">
+                    <div class="waveform" id="waveform"></div>
+                    <div class="waveform-progress" aria-hidden="true">
+                        <div class="waveform-progress-fill" id="waveformProgress" style="width:0%"></div>
+                    </div>
+                    <div class="waveform-meta">
+                        <span class="waveform-time">00:04 / 00:22</span>
+                        <div class="waveform-controls">
+                                    <button class="wc-btn play">▶</button>
+                                    <button class="wc-btn">⏹</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dominant emotion -->
+                <div class="dominant-label">
+                    <div class="dom-name">Excited 😄</div>
+                    <div class="dom-badge">Strongest · 94%</div>
+                </div>
+
+                <!-- Emotion bars -->
+                <div class="emotion-rows">
+                    <div class="emo-row">
+                        <div class="emo-name">Happy</div>
+                        <div class="emo-track"><div class="emo-fill" style="width:94%;background:var(--gold)"></div></div>
+                        <div class="emo-pct">94%</div>
+                    </div>
+                    <div class="emo-row">
+                        <div class="emo-name">Concern</div>
+                        <div class="emo-track"><div class="emo-fill" style="width:26%;background:var(--teal)"></div></div>
+                        <div class="emo-pct">26%</div>
+                    </div>
+                    <div class="emo-row">
+                        <div class="emo-name">Alert</div>
+                        <div class="emo-track"><div class="emo-fill" style="width:18%;background:var(--violet)"></div></div>
+                        <div class="emo-pct">18%</div>
+                    </div>
+                    <div class="emo-row">
+                        <div class="emo-name">Calm</div>
+                        <div class="emo-track"><div class="emo-fill" style="width:16%;background:var(--muted)"></div></div>
+                        <div class="emo-pct">16%</div>
+                    </div>
+                    <div class="emo-row">
+                        <div class="emo-name">Sad</div>
+                        <div class="emo-track"><div class="emo-fill" style="width:8%;background:var(--rose)"></div></div>
+                        <div class="emo-pct">8%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="section-eyebrow">Capabilities</div>
+    <div class="section-title">Everything you need to<br>understand <em>human emotion</em></div>
+
+    <div class="features-grid">
+        <div class="feat-cell">
+            <div class="feat-icon feat-icon-1">🎙</div>
+            <div class="feat-title">Real-time analysis</div>
+            <div class="feat-desc">Process live audio streams with under 120ms latency. Works with microphone input, RTMP streams, and WebRTC calls.</div>
+        </div>
+        <div class="feat-cell">
+            <div class="feat-icon feat-icon-2">📊</div>
+            <div class="feat-title">Acoustic fingerprinting</div>
+            <div class="feat-desc">Extract pitch contour, formant frequencies, MFCCs, energy levels, and tempo — the building blocks of emotional expression.</div>
+        </div>
+        <div class="feat-cell">
+            <div class="feat-icon feat-icon-3">🧠</div>
+            <div class="feat-title">6-class emotion model</div>
+            <div class="feat-desc">Detect Happiness, Sadness, Anger, Fear, Disgust and Neutral with confidence scores and intensity levels.</div>
+        </div>
+        <div class="feat-cell">
+            <div class="feat-icon feat-icon-4">📈</div>
+            <div class="feat-title">Temporal tracking</div>
+            <div class="feat-desc">Follow emotional arcs across a conversation or recording. Visualize how sentiment evolves second by second.</div>
+        </div>
+        <div class="feat-cell">
+            <div class="feat-icon feat-icon-5">🔌</div>
+            <div class="feat-title">API & webhooks</div>
+            <div class="feat-desc">REST API, Python SDK, and real-time webhooks. Integrate into your app with a few lines of code. Supports batch processing.</div>
+        </div>
+        <div class="feat-cell">
+            <div class="feat-icon feat-icon-6">🔒</div>
+            <div class="feat-title">Privacy-first</div>
+            <div class="feat-desc">Audio is never stored. On-device processing available. SOC 2 Type II certified. HIPAA-ready for clinical deployments.</div>
+        </div>
+    </div>
+</section>
+
+<!-- UPLOAD + RESULTS -->
+<section class="upload-section">
+    <div class="section-eyebrow">Try it now</div>
+    <div class="section-title">Drop in a file, hear<br>what the <em>voice reveals</em></div>
+
+    <div class="upload-layout">
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">↑</div>
+            <div class="upload-title">Upload audio file</div>
+            <div class="upload-desc">Drag and drop your file here, or click to browse.<br>Supports single or multi-channel recordings.</div>
+            <input
+              type="file"
+              id="audioInput"
+              accept=".wav,.mp3,.ogg,.m4a,.webm,.flac"
+              hidden
+            >
+            <div class="upload-file-state" id="uploadFileState" aria-live="polite">
+                <span class="upload-checkmark" id="uploadCheckmark">✔</span>
+                <span class="upload-file-name" id="uploadFileName">No file selected</span>
+            </div>
+            <div class="upload-formats">
+                <span class="fmt-pill">.mp3</span>
+                <span class="fmt-pill">.wav</span>
+                <span class="fmt-pill">.ogg</span>
+                <span class="fmt-pill">.m4a</span>
+                <span class="fmt-pill">.webm</span>
+                <span class="fmt-pill">.flac</span>
+            </div>
+            <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                <button id="analyzeUploadButton" class="btn-primary">Analyze upload</button>
+                <button id="resetUploadButton" class="btn-ghost">Reset</button>
+            </div>
+        </div>
+
+        <div class="results-panel" id="resultsSection">
+            <div class="results-header">
+                <div class="results-title">Analysis results</div>
+                <div class="results-status"><div class="status-dot2"></div>Processing complete</div>
+                <div id="loadingIndicator" style="display:none;margin-left:12px;color:var(--muted);font-size:13px">Analyzing…</div>
+            </div>
+            <div class="results-body">
+                <div class="emotion-showcase">
+                    <div class="emo-main-label">Primary emotion detected</div>
+                    <div class="emo-main-val" id="dominantEmotion">Excited</div>
+                    <div class="emo-main-conf" id="dominantConfidence">94.8% confidence · High energy · Positive valence</div>
+                    <div id="detailedResults" style="margin-top:10px"></div>
+                </div>
+                <div class="analysis-plot">
+                    <div class="analysis-plot-head">
+                        <div class="analysis-plot-title">Analysis plot</div>
+                        <div class="analysis-plot-note">Emotion confidence for every analyzed audio</div>
+                    </div>
+                    <div class="analysis-plot-frame">
+                        <canvas id="analysisChart"></canvas>
+                    </div>
+                </div>
+                <div class="mini-grid">
+                    <div class="mini-card">
+                        <div class="mini-lbl">Pitch</div>
+                        <div class="mini-val"><span id="pitchVal">324</span> <span>Hz</span></div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-lbl">Energy</div>
+                        <div class="mini-val"><span id="energyVal">81</span> <span>%</span></div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-lbl">Tempo</div>
+                        <div class="mini-val"><span id="tempoVal">156</span> <span>bpm</span></div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-lbl">Duration</div>
+                        <div class="mini-val" id="fileName">0:18 <span>s</span></div>
+                    </div>
+                </div>
+                <div class="emo-bars">
+                    <div class="emo-bar-row">
+                        <span class="ebo-lbl">Happy</span>
+                        <div class="ebo-track"><div class="ebo-fill" style="width:94%;background:var(--gold)"></div></div>
+                        <span class="ebo-num">94%</span>
+                    </div>
+                    <div class="emo-bar-row">
+                        <span class="ebo-lbl">Sad</span>
+                        <div class="ebo-track"><div class="ebo-fill" style="width:26%;background:var(--teal)"></div></div>
+                        <span class="ebo-num">26%</span>
+                    </div>
+                    <div class="emo-bar-row">
+                        <span class="ebo-lbl">Fearful</span>
+                        <div class="ebo-track"><div class="ebo-fill" style="width:18%;background:var(--violet)"></div></div>
+                        <span class="ebo-num">18%</span>
+                    </div>
+                    <div class="emo-bar-row">
+                        <span class="ebo-lbl">Anger</span>
+                        <div class="ebo-track"><div class="ebo-fill" style="width:11%;background:var(--rose)"></div></div>
+                        <span class="ebo-num">11%</span>
+                    </div>
+                    <div class="emo-bar-row">
+                        <span class="ebo-lbl">Disgust</span>
+                        <div class="ebo-track"><div class="ebo-fill" style="width:6%;background:var(--amber)"></div></div>
+                        <span class="ebo-num">6%</span>
+                    </div>
+                </div>
+                <!-- hidden canvases for charts used by script.js -->
+                <canvas id="radarChart" width="300" height="300" style="display:none"></canvas>
+                <canvas id="sentimentBar" width="300" height="120" style="display:none;margin-top:12px"></canvas>
+                <!-- audio preview section (hidden until file/recorded) -->
+                <div id="audioPreviewSection" style="display:none;margin-top:12px">
+                    <audio id="audioPreview" controls style="width:100%"></audio>
+                </div>
+                <!-- emotion history (populated by script) -->
+                <div id="emotion-history" style="display:none;margin-top:12px"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+    <div class="section-eyebrow">Process</div>
+    <div class="section-title">From voice to insight<br>in <em>four steps</em></div>
+    <div class="steps-row">
+        <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-title">Capture</div>
+            <div class="step-desc">Upload a file or stream live audio via microphone or API.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-title">Extract</div>
+            <div class="step-desc">We extract 80+ acoustic features: pitch, energy, MFCCs, rhythm.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-title">Classify</div>
+            <div class="step-desc">A transformer-based model maps features to a 6-class emotion space.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-title">Visualize</div>
+            <div class="step-desc">Results returned as confidence scores, charts, and actionable insights.</div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">VOXINSIGHT<span>.</span></div>
+    <p class="footer-copy">© 2026 VOXINSIGHT Technologies. All rights reserved.</p>
+    <ul class="footer-links">
+        <li><a href="./privacy.html">Privacy</a></li>
+        <li><a href="./terms.html">Terms</a></li>
+    </ul>
+
+    <!-- hidden audio player for script preview/playback -->
+    <audio id="audioPlayer" controls style="display:none"></audio>
+</footer>
+
+<script>
+const wf = document.getElementById('waveform');
+const heights = [10,20,35,48,56,44,52,38,28,16,24,42,55,50,36,26,18,30,46,52,48,34,22,14,24,40,54,48,32,20,16,28,44,56,50,36,24,14];
+heights.forEach((h, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'wbar';
+    bar.style.setProperty('--h', h + 'px');
+    bar.style.animationDelay = (i * 0.04) + 's';
+    wf.appendChild(bar);
+});
+
+document.querySelectorAll('.card-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+</script>
+<!-- Chart.js and app script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="page-transition.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
